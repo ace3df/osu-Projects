@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name       osu! Beatmap Mirror
-// @version    1.5
+// @version    1.6
 // @description  Adds a mirror link to osu! download pages
 // @include     http*://osu.ppy.sh/b/*
 // @include     http*://osu.ppy.sh/s/*
+// @include     http*://osu.ppy.sh/u/*
 // @include     http*://osu.ppy.sh/p/beatmaplist*
-// @copyright   Ace3DF, 2014
+// @copyright   Ace3DF, 2014, 2015
 // @updateURL   https://raw.githubusercontent.com/ace3df/random/master/BeatmapMirror.js
 // @grant       none
 // ==/UserScript==
@@ -28,6 +29,7 @@ for(i = 0; i < search.length; i++){
 var beatmapID = document.getElementsByClassName('bmt')[0].src;
 beatmapID = beatmapID.replace(/^.*[\\\/]/, '');
 beatmapID = beatmapID.replace(/l.jpg/, '');
+beatmapID = beatmapID.substring(0, beatmapID.indexOf('?'));
 
 // Check if URL is a number (map) and not just a normal page
 if (!isNaN(beatmapID)) { 
@@ -37,3 +39,7 @@ if (!isNaN(beatmapID)) {
     html.innerHTML = html.innerHTML + " - <a href='http://loli.al/s/" + beatmapID + "'> loli</a>"; //Add loli
     html.innerHTML = html.innerHTML + " - <a href='http://osu.uu.gl/s/" + beatmapID + "'> uu.gl</a>"; //Add uu.gl
 }
+
+
+// Todo
+// Add links to profiles for quick file gets
